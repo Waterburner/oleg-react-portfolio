@@ -70,9 +70,6 @@ handleFilter(filter) {
                 <button onClick={() => this.handleFilter('Scheduling')}>Scheduling</button>
                 <button onClick={() => this.handleFilter('Enerprise')}>Enterprise</button>
 
-                
-
-                
             </div>
         )
     }
