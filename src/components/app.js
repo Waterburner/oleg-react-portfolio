@@ -17,14 +17,14 @@ import Blog from "./pages/blog";
 export default class App extends Component {
   render() {
     return (
-      <div className='app'>
+    <div className='app'>
 
       <Router>
         <div>
           <NavigationContainer />
 
           <Switch>
-            <Route exact path="/" component ={Home} /> /* exact makes only "/" location and not anything else what starts with "/" -> like "/about-me" */
+            <Route exact path="/" component ={Home} /> {/* exact makes only "/" location and not anything else what starts with "/" -> like "/about-me" */}
             <Route path="/about-me" component ={About} />
             <Route path="/contact" component ={Contact} />
             <Route path="/blog" component ={Blog} />
@@ -36,7 +36,7 @@ export default class App extends Component {
         <h1>Oleh Kovelskyi Portfolio</h1>
         <PortfolioContainer />
         <div>{moment().format("MMMM Do YYYY, h:mm:ss a")}</div>
-      </div>
+    </div>
     );
   }
 }
