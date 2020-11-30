@@ -11,7 +11,7 @@ export default class PortfolioContainer extends Component {
             pageTitle: "Welcome to my portfolio",
             // isLoading: true,                        // THIS IS JUST A TEST
             data: [
-                {title: "title1", category: "eCommerce"},
+                {title: "title1", category: "eCommerce",},
                 {title: "title2", category: "Scheduling"},
                 {title: "title3", category: "Enterprise"},
                 {title: "title4", category: "eCommerce"},
