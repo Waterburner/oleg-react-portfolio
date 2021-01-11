@@ -79,7 +79,7 @@ export default class PortfolioContainer extends Component {
             <div>
                 <h2>{this.state.pageTitle}</h2>
 
-                {this.portfolioItems()}
+                <div className="portfolio-items-wrapper">{this.portfolioItems()}</div>
 
                 <hr/>
                 <button onClick={this.handlePageTitleUpdate}>Change title</button>

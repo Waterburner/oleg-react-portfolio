@@ -2,3 +2,9 @@ body {
     margin: 0px;
     font-family: 'Archivo Narrow', sans-serif;
 }
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
