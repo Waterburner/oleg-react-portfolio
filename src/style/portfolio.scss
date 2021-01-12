@@ -46,3 +46,8 @@
         }
     }
 }
+
+.image-blur {
+    transition: 0.7s;
+    filter: brightness(20%);
+}
