@@ -14,7 +14,9 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Blog from "./pages/blog";
 import PortfolioDetail from "./portfolio/portfolio-detail";
+import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
+import Test from "./pages/test";
 
 
 export default class App extends Component {
@@ -28,9 +30,9 @@ export default class App extends Component {
         <div>
           <NavigationContainer />
 
-          <Switch>
+          <Switch> 
             <Route exact path="/" component ={Home} /> {/* exact makes only "/" location and not anything else what starts with "/" -> like "/about-me" */}
-            <Route path="/about-me" component ={About} />
+            <Route path="/auth" component ={Auth} />
             <Route path="/contact" component ={Contact} />
             <Route path="/blog" component ={Blog} />
             <Route exact path="/portfolio/:slug" component ={PortfolioDetail} />
@@ -44,3 +46,4 @@ export default class App extends Component {
     );
   }
 }
+
