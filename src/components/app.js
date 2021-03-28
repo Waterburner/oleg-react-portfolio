@@ -9,16 +9,17 @@ import {
 
 import axios from "axios";
 
-import PortfolioContainer from "./portfolio/portfolio-container";
 import NavigationContainer from "./navigation/navigation-container";
 import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Blog from "./pages/blog";
+import PortfolioManager from "./pages/portfolio-manager";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 import Test from "./pages/test";
+import test from './pages/test';
 
 
 export default class App extends Component {
@@ -90,7 +91,7 @@ export default class App extends Component {
   }
 
   authorizedPages() {
-    return [<Route path="/blog" component={Blog} />];
+    return [<Route path="/portfolio-manager" component={PortfolioManager} />];
   }
 
   render() {
@@ -103,8 +104,6 @@ export default class App extends Component {
           <NavigationContainer 
           loggedInStatus={this.state.loggedInStatus}
           handleSuccessfulLogout={this.handleSuccessfulLogout}/>
-
-          <h2>{this.state.loggedInStatus}</h2>
 
           <Switch> 
             <Route exact path="/" component ={Home} /> {/* exact makes only "/" location and not anything else what starts with "/" -> like "/about-me" */}
@@ -122,6 +121,8 @@ export default class App extends Component {
 
 
             <Route path="/about-me" component ={About} />
+            {/* <Route path="/test" component ={test} /> don't forget about navigation-container */}
+            <Route path="/blog" component ={Blog} />
             <Route path="/contact" component ={Contact} />
               {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages() : null}
             <Route exact path="/portfolio/:slug" component ={PortfolioDetail} />
