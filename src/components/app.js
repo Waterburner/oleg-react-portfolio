@@ -18,8 +18,7 @@ import PortfolioManager from "./pages/portfolio-manager";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
-import Test from "./pages/test";
-import test from './pages/test';
+// import test from './pages/test';
 
 
 export default class App extends Component {
