@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class PortfolioForm extends Component {
-
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -20,17 +19,28 @@ export default class PortfolioForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    buildForm() {
+        let formData = new FormData();
+
+        formData.append("portfolio_item[name]", this.state.name);
+        formData.append("portfolio_item[description]", this.state.description);
+        formData.append("portfolio_item[url]", this.state.url);
+        formData.append("portfolio_item[category]", this.state.category);
+        formData.append("portfolio_item[position]", this.state.position);
+
+        return formData;
+    }
 
     handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
-    handleSubmit(event) {
-        console.log("event", event);
-        event.preventDefault();
-    }
+  handleSubmit(event) {
+    this.buildForm();
+    event.preventDefault();
+  }
 
     render() {
         return (
@@ -62,7 +72,7 @@ export default class PortfolioForm extends Component {
                             name="position"
                             placeholder="Position"
                             value={this.state.position}
-                            onChange={this.onChange}
+                            onChange={this.handleChange}
                         />
 
                         <input 
@@ -70,7 +80,7 @@ export default class PortfolioForm extends Component {
                             name="category"
                             placeholder="Category"
                             value={this.state.category}
-                            onChange={this.onChange}
+                            onChange={this.handleChange}
                         />
                     </div>
                     <div>
@@ -79,7 +89,7 @@ export default class PortfolioForm extends Component {
                             name="description"
                             placeholder="Description"
                             value={this.state.description}
-                            onChange={this.onChange}
+                            onChange={this.handleChange}
                         /> 
                     </div>
 
