@@ -21,7 +21,7 @@ const PortfolioSidebarList = (props) => {
         <div className="portfolio-sidebar-list-wrapper">
             {portfolioList}
         </div>
-    )
-}
+    );
+};
 
 export default PortfolioSidebarList;
