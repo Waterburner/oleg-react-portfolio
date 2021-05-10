@@ -175,27 +175,33 @@ export default class PortfolioForm extends Component {
                         /> 
                     </div>
 
-                    <div className="image-uploaders three-column">
+                    <div className="image-uploaders">
                         <DropzoneComponent 
                             ref={this.thumbRef}
                             config={this.componentConfig()}
                             djsConfig={this.djsConfig()}
                             eventHandlers={this.handleThumbDrop()}
-                        ></DropzoneComponent>
+                        >
+                            <div className="dz-message">Thumbnail</div>
+                        </DropzoneComponent>
 
                         <DropzoneComponent 
                             ref={this.bannerRef}
                             config={this.componentConfig()}
                             djsConfig={this.djsConfig()}
                             eventHandlers={this.handleBannerDrop()}
-                        ></DropzoneComponent>
+                        >
+                            <div className="dz-message">Banner</div>
+                        </DropzoneComponent>
 
                         <DropzoneComponent 
                             ref={this.logoRef}
                             config={this.componentConfig()}
                             djsConfig={this.djsConfig()}
                             eventHandlers={this.handleLogoDrop()}
-                        ></DropzoneComponent>
+                        >
+                            <div className="dz-message">Logo</div>
+                        </DropzoneComponent>
                     </div>
 
                     <div>
