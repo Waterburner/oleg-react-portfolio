@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function() {
-    return (
-        <div>
+export default class Blog extends Component {
+    constructor() {
+        super();
+    }
+
+
+    render() {
+
+        return (
+            <div>
             <h2>Blog</h2>
 
             <div>
@@ -11,4 +18,5 @@ export default function() {
             </div>
         </div>
     );
+    }
 }
