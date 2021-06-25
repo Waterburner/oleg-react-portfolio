@@ -8,7 +8,10 @@ export default class Blog extends Component {
         super();
 
         this.state = {
-            blogItems: []
+            blogItems: [],
+            totalCount: 0,
+            currentPage: 0,
+
         }
 
         this.getBlogItems = this.getBlogItems.bind(this);
@@ -26,16 +29,19 @@ export default class Blog extends Component {
     }
 
     getBlogItems() {
+        this.setState({
+            currentPage: this.state.currentPage +1
+        });
+
         axios.get("https://waterburner.devcamp.space/portfolio/portfolio_blogs", {
                 withCredentials: true
             })
             .then(response => {
-
                 // console.log('response', response); // this is how we see response.data.portfolio_blogs
-                
 
                 this.setState({
-                    blogItems: response.data.portfolio_blogs
+                    blogItems: response.data.portfolio_blogs,
+                    totalCount: response.data.meta.total_records
                 });
             })
             .catch(error => {
