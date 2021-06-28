@@ -40,7 +40,6 @@ export default class BlogModal extends Component {
                 }}
                 isOpen={this.props.modalIsOpen}>
 
-                <h1>I'm in the modal</h1>
                 <BlogForm handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission}/>
             </ReactModal>
         )
