@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import BlogItem from '../blog/blog-item';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BlogModal from '../modals/blog-modal';
 
 export default class Blog extends Component {
     constructor() {
@@ -12,30 +13,36 @@ export default class Blog extends Component {
             blogItems: [],
             totalCount: 0,
             currentPage: 0,
-            isLoading: true
+            isLoading: true,
+            blogModalIsOpen: false
         }
 
         this.getBlogItems = this.getBlogItems.bind(this);
-
-        this.activateInfiniteScroll();
+        this.onScroll = this.onScroll.bind(this);
+        window.addEventListener("scroll", this.onScroll, false);
+        this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
     }
 
-    activateInfiniteScroll() {
-        window.onscroll = () => {
+    handleNewBlogClick() {
+        this.setState ({
+            blogModalIsOpen: true
+        });
+    }
 
-            if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
-                return;
-            }
+    onScroll() {
 
-            if (
-                window.innerHeight + document.documentElement.scrollTop === 
-                document.documentElement.offsetHeight
-            ) {
-                this.getBlogItems();
-                this.setState({
-                    isLoading: true
-                })
-            }
+        if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
+            return;
+        }
+
+        if (
+            window.innerHeight + document.documentElement.scrollTop ===
+            document.documentElement.offsetHeight
+        ) {
+            this.getBlogItems();
+            this.setState({
+                isLoading: true
+            })
         }
     }
 
@@ -65,6 +72,10 @@ export default class Blog extends Component {
         this.getBlogItems();
     }
 
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.onScroll, false);
+    }
+
     render() {
 
         const blogRecords = this.state.blogItems.map(blogItem => {
@@ -73,6 +84,14 @@ export default class Blog extends Component {
 
         return (
             <div className="blog-container">
+                <BlogModal modalIsOpen={this.state.blogModalIsOpen}/>
+
+                <div className="new-blog-link">
+                    <a onClick={this.handleNewBlogClick}>
+                        open Modal!
+                    </a>
+                </div>
+
                 <div className="content-container">
                     {blogRecords}
                 </div>
