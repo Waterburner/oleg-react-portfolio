@@ -1,7 +1,27 @@
 .blog-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .new-blog-link {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+
+        a {
+            font-size: 3em;
+            cursor: pointer;
+            color: $teal;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            transition: ease-in-out;
+
+            &:hover {
+                color: $dark-teal;
+            }
+        }
+    }
 
     .content-container {
         display: flex;

@@ -49,10 +49,16 @@ const handleSignOut = () => {
             </div>
 
             <div className="right-side">
-                
-
-                {props.loggedInStatus === 'LOGGED_IN' ? (<a onClick={handleSignOut}> <i className="fas fa-sign-out-alt"></i> Sign out <FontAwesomeIcon icon="sign-out-alt"/> </a>)
-                 : 'Oleh Kovelskyi'}
+                {
+                    props.loggedInStatus === 'LOGGED_IN'
+                    ? (
+                         <a onClick = {handleSignOut} > 
+                            < i className = "fas fa-sign-out-alt" > </i> Sign out <FontAwesomeIcon icon="sign-out-alt" /> 
+                        </a>
+                        )
+                        :
+                         'Oleh Kovelskyi'
+                }
             </div>
         </div>
     )
