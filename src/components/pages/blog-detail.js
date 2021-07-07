@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ReactHtmlParser from "react-html-parser";
+
+import BlogFeaturedImage from "../blog/blog-featured-image";
 
 export default class  extends Component {
     constructor(props) {
@@ -44,14 +47,11 @@ componentDidMount() {
             <div className="blog-container">
                 <div className="content-container">
 
-                <h1>{title}</h1>
-                <div className="featured-image-wrapper">
-                    
-                    <img src={featured_image_url} style={{width: 20 + 'em'}} /> {/* style just to make img smaller for testing purpuses */}
-                </div>
-                <div className="content">
-                    <p>{content}</p>
-                </div>
+                    <h1>{title}</h1>
+
+                    <BlogFeaturedImage img={featured_image_url} />
+
+                        <div className="content">{ReactHtmlParser(content)}</div>
                 </div>
             </div>
         );

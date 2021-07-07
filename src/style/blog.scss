@@ -1,8 +1,8 @@
 .blog-container {
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
     .new-blog-link {
         position: fixed;
@@ -15,7 +15,7 @@
             color: $teal;
             margin-right: 15px;
             margin-bottom: 15px;
-            transition: ease-in-out;
+            transition: 0.5s ease-in-out;
 
             &:hover {
                 color: $dark-teal;
