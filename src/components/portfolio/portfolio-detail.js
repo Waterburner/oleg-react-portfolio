@@ -1,9 +1,66 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-export default function(props) {
-    return (
-        <div>
-            <h2>Portfolio detail for {props.match.params.slug}</h2>
-        </div>
-    );
+// banner_image_url: "https://devcamp-space.s3.amazonaws.com/UU1oX8N2ZGwfpEPCECKusheF?response-content-disposition=inline%3B%20filename%3D%22crondose.jpg%22%3B%20…"
+// category: "test_1"
+// column_names_merged_with_images: ["id", "name", "description", "url", "category", "position", "thumb_image", "banner_image", "logo"] (9)
+// description: "This is description for item 1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi gravida libero nec velit. Morbi scelerisqu…"
+// id: 23682
+// logo_url: "https://devcamp-space.s3.amazonaws.com/PJ34MF5kfSfgeDzXMjY1uBnf?response-content-disposition=inline%3B%20filename%3D%22crondose.png%22%3B%20…"
+// name: "Portfolio item 1 (CronDose)"
+// position: 4
+// thumb_image_url: "https://devcamp-space.s3.amazonaws.com/eJvJX9nWA7XS8hbz8Df97BQk?response-content-disposition=inline%3B%20filename%3D%22crondose.jpg%22%3B%20…"
+// url: "https://apple.com"
+
+export default class PortfolioDetail extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            portfolioItem: {}
+        };
+    }
+
+    componentWillMount() {
+        this.getPortfolioItems();
+    }
+
+    getPortfolioItems() {
+        axios
+            .get(`https://waterburner.devcamp.space/portfolio/portfolio_items/${
+                    this.props.match.params.slug
+                }`, 
+                { withCredentials: true }
+            )
+            .then(response => {
+                this.setState({
+                    portfolioItem: response.data.portfolio_item
+                })
+            })
+            .catch(error => {
+                console.log('getPortfolioItems error', error);
+            });
+    }
+
+    render() {
+        const {            
+            banner_image_url,
+            category,
+            column_names_merged_with_images,
+            description,
+            id,
+            logo_url,
+            name,
+            position,
+            thumb_image_url,
+            url,
+        } = this.state.portfolioItem;
+
+        return (
+            <div>
+                <h2>{name}</h2>
+                <p>{description}</p>
+            </div>
+        );
+    }
 }

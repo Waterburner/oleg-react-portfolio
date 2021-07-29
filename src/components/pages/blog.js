@@ -54,6 +54,8 @@ export default class Blog extends Component {
             window.innerHeight + document.documentElement.scrollTop ===
             document.documentElement.offsetHeight
         ) {
+            console.log('reached bottom');
+            
             this.getBlogItems();
             this.setState({
                 isLoading: true
