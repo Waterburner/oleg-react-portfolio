@@ -33,6 +33,8 @@ export default class PortfolioDetail extends Component {
                 { withCredentials: true }
             )
             .then(response => {
+                console.log('response', response);
+                
                 this.setState({
                     portfolioItem: response.data.portfolio_item
                 })
@@ -55,11 +57,35 @@ export default class PortfolioDetail extends Component {
             thumb_image_url,
             url,
         } = this.state.portfolioItem;
+        
+        const bannerStyles = {
+            backgroundImage: "url(" +banner_image_url + ")",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center center"
+        };
+
+        const logoStyles = {
+            width: "200px"
+        };
 
         return (
-            <div>
-                <h2>{name}</h2>
-                <p>{description}</p>
+            <div className="portfolio-detail-wrapper">
+                <div className="banner" style={bannerStyles}>
+                    <img src={logo_url} alt="logo" style={logoStyles}/>
+                </div>
+                
+                <div className="portfolio-detail-description-wrapper">
+                    <div className="description">
+                        <p>{description}</p>
+                    </div>
+                </div>
+                    
+                <div className="bottom-content-wrapper">
+                    <a href={url} className="site-link" target="_blank">
+                        Visit {name}
+                    </a>
+                </div>
             </div>
         );
     }
