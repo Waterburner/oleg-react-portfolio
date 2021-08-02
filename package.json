@@ -1,7 +1,10 @@
 {
   "name": "react-redux-router",
   "version": "1.0.0",
-  "description": "Basic skeleton codebase for React/Redux/Router applications.",
+  "description": "Personal portfolio based on - Basic skeleton codebase for React/Redux/Router applications.",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "preinstall": "npm set audit false",
     "start": "webpack-dev-server --config webpack/dev.config.js --watch",
@@ -25,7 +28,7 @@
     "sass",
     "css module"
   ],
-  "author": "Your Name Here",
+  "author": "Oleh Kovelskyi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bottega-code-school/js-builder/issues"
