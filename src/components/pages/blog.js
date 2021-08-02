@@ -5,9 +5,13 @@ import axios from 'axios';
 import BlogItem from '../blog/blog-item';
 import BlogModal from '../modals/blog-modal';
 
+
+
 export default class Blog extends Component {
     constructor() {
         super();
+
+
 
         this.state = {
             blogItems: [],
@@ -23,6 +27,29 @@ export default class Blog extends Component {
         this.handleNewBlogClick = this.handleNewBlogClick.bind(this);
         this.handleModalClose = this.handleModalClose.bind(this);
         this.handleSuccessfulNewBlogSubmition = this.handleSuccessfulNewBlogSubmition.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    }
+
+    handleDeleteClick(blog) {
+        // console.log('deleted', blog);
+        
+        axios
+            .delete(`https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`, { withCredentials: true}
+            )
+            .then(response => {
+                this.setState({
+                    blogItems: this.state.blogItems.filter(blogItem => {
+                        return blog.id !== blogItem.id;
+                    })
+                });
+
+                return response.data;
+            })
+            .catch( error => {
+                console.log('handleDeleteClick error', error);
+            });
+        
+        
     }
 
     handleSuccessfulNewBlogSubmition(blog) {
@@ -75,7 +102,7 @@ export default class Blog extends Component {
             })
             .then(response => {
                 // console.log('response', response); // this is how we see response.data.portfolio_blogs
-                console.log("getting", response.data);
+                // console.log("getting", response.data);
                 this.setState({
                     blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
                     totalCount: response.data.meta.total_records,
@@ -98,7 +125,18 @@ export default class Blog extends Component {
     render() {
 
         const blogRecords = this.state.blogItems.map(blogItem => {
-            return <BlogItem key={blogItem.id} blogItem={blogItem} />
+            if (this.props.loggedInStatus === "LOGGED_IN") {
+                return (
+                    <div key={blogItem.id} className="admin-blog-wraper">
+                        <BlogItem  blogItem={blogItem} />
+                        <a onClick={() => this.handleDeleteClick(blogItem)}>
+                            <FontAwesomeIcon icon="trash" />
+                        </a>
+                    </div>
+                )
+            } else {
+                return <BlogItem key={blogItem.id} blogItem={blogItem} />
+            }
         });
 
         return (
@@ -111,7 +149,7 @@ export default class Blog extends Component {
                 {this.props.loggedInStatus === "LOGGED_IN" ? (
                         <div className="new-blog-link">
                             <a onClick={this.handleNewBlogClick}>
-                                <FontAwesomeIcon icon="plus-square" />
+                                <FontAwesomeIcon icon="plus-circle" />
                             </a>
                         </div>
                     )

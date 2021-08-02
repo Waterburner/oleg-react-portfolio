@@ -12,7 +12,25 @@
         justify-content: center;
         align-items: center;
         background-color: $offwhite;
+
+        .auth-form-wrapper {
+            @include input-element();
+            @include base-grid();
+            grid-gap: 0px;
+            padding: 42px 5px;
+
+            .form-group {
+                display: flex;
+
+                svg {
+                    font-size: 2em;
+                    color: $teal;
+                    margin-right: 15px;
+                }
+            }
+        }
     }
-    @include input-element();
+
+
 }
 
